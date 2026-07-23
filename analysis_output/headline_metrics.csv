@@ -1,0 +1,10 @@
+metric,value,unit
+PRs ready for review,1571.0,count
+Review events,3107.0,count
+Median first-review wait,15.7,hours
+Average first-review wait,16.558,hours
+Waiting over 24 hours,15.213,percent
+Median ready-to-merge,28.817,hours
+Top 20% reviewer share,52.752,percent
+14-day rollback rate,1.393,percent
+Linked-incident rate,0.73,percent

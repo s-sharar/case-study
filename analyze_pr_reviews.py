@@ -6,7 +6,7 @@ tables. It recomputes all durations and classifications instead of relying on
 formula cells cached inside Excel.
 
 Usage:
-    python analyze_pr_reviews.py synthetic_pr_review_model.xlsx \
+    python analyze_pr_reviews.py pr_data.csv review_events.csv \
         --output analysis_output
 
 Outputs:
@@ -73,14 +73,14 @@ LIGHT_GRID = "#D1D5DB"
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Analyze the synthetic PR-review workbook."
+        description="Analyze synthetic PR-review CSV files."
     )
-    parser.add_argument("workbook", type=Path, help="Path to the .xlsx workbook")
+    parser.add_argument("pr_data", type=Path)
+    parser.add_argument("review_events", type=Path)
     parser.add_argument(
         "--output",
         type=Path,
         default=Path("analysis_output"),
-        help="Directory for generated tables and charts",
     )
     return parser.parse_args()
 
@@ -91,12 +91,17 @@ def require_columns(frame: pd.DataFrame, expected: set[str], sheet_name: str) ->
         raise ValueError(f"{sheet_name!r} is missing required columns: {missing}")
 
 
-def load_and_prepare(workbook_path: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
-    if not workbook_path.exists():
-        raise FileNotFoundError(workbook_path)
+def load_and_prepare(
+    pr_path: Path, review_path: Path
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    if not pr_path.exists():
+        raise FileNotFoundError(pr_path)
+    if not review_path.exists():
+        raise FileNotFoundError(review_path)
 
-    prs = pd.read_excel(workbook_path, sheet_name=PR_SHEET)
-    reviews = pd.read_excel(workbook_path, sheet_name=REVIEW_SHEET)
+    prs = pd.read_csv(pr_path)
+    reviews = pd.read_csv(review_path)
+
     require_columns(prs, PR_REQUIRED_COLUMNS, PR_SHEET)
     require_columns(reviews, REVIEW_REQUIRED_COLUMNS, REVIEW_SHEET)
 
@@ -380,7 +385,10 @@ def save_analysis(
 
 def main() -> None:
     args = parse_args()
-    prs, reviews = load_and_prepare(args.workbook)
+    prs, reviews = load_and_prepare(
+        args.pr_data,
+        args.review_events
+    )
 
     headlines = headline_metrics(prs, reviews)
     weekly = weekly_metrics(prs)

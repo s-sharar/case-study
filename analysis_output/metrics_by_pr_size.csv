@@ -1,0 +1,5 @@
+size_bucket,pr_count,average_review_wait_hours,median_review_wait_hours,waiting_over_24h_pct,average_ready_to_merge_hours,rollback_rate_pct
+Small,643,13.849,13.167,6.065,25.468,0.817
+Medium,581,16.492,15.65,12.909,30.758,0.712
+Large,215,19.492,19.383,25.581,38.813,3.382
+XL,132,25.268,24.908,53.03,57.518,3.968

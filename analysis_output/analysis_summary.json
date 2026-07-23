@@ -1,0 +1,41 @@
+{
+  "disclosure": "Synthetic, assumption-driven scenario. Not observed Persona or company data.",
+  "headline_metrics": {
+    "PRs ready for review": {
+      "value": 1571.0,
+      "unit": "count"
+    },
+    "Review events": {
+      "value": 3107.0,
+      "unit": "count"
+    },
+    "Median first-review wait": {
+      "value": 15.7,
+      "unit": "hours"
+    },
+    "Average first-review wait": {
+      "value": 16.558264,
+      "unit": "hours"
+    },
+    "Waiting over 24 hours": {
+      "value": 15.21324,
+      "unit": "percent"
+    },
+    "Median ready-to-merge": {
+      "value": 28.816667,
+      "unit": "hours"
+    },
+    "Top 20% reviewer share": {
+      "value": 52.751851,
+      "unit": "percent"
+    },
+    "14-day rollback rate": {
+      "value": 1.393497,
+      "unit": "percent"
+    },
+    "Linked-incident rate": {
+      "value": 0.729927,
+      "unit": "percent"
+    }
+  }
+}

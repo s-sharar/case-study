@@ -1,0 +1,5 @@
+workload_bucket,pr_count,average_review_wait_hours,median_review_wait_hours,waiting_over_24h_pct,average_ready_to_merge_hours,rollback_rate_pct
+0-2,137,9.952,8.417,3.65,25.359,1.527
+3-5,377,13.112,12.283,5.836,28.37,1.934
+6-8,432,15.757,14.55,10.88,31.306,1.199
+9+,625,20.639,19.767,26.4,36.026,1.173
