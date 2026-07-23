@@ -180,7 +180,7 @@ def headline_metrics(prs: pd.DataFrame, reviews: pd.DataFrame) -> pd.DataFrame:
         ("Average first-review wait", prs["review_wait_hours"].mean(), "hours"),
         ("Waiting over 24 hours", prs["wait_over_24h"].mean() * 100, "percent"),
         ("Median ready-to-merge", merged["ready_to_merge_hours"].median(), "hours"),
-        ("Top 20% reviewer share", top_20_share * 100, "percent"),
+        ("Top 20% share of review events", top_20_share * 100, "percent"),
         ("14-day rollback rate", merged["rollback"].mean() * 100, "percent"),
         ("Linked-incident rate", merged["linked_incident_flag"].mean() * 100, "percent"),
     ]
@@ -225,6 +225,7 @@ def segment_metrics(
                     "ready_to_merge_hours"
                 ].mean(),
                 "rollback_rate_pct": merged["rollback"].mean() * 100,
+                "merged_pr_count": len(merged),
             }
         )
 
@@ -315,7 +316,10 @@ def plot_segments(
         workload["average_review_wait_hours"],
         color=ORANGE,
     )
-    axes[1].set_title("Reviewer backlog predicts longer waits", color=NAVY)
+    axes[1].set_title(
+        "Reviewer backlog is associated with longer waits",
+        color=NAVY,
+    )
     axes[1].set_ylabel("Average wait (hours)")
     style_axis(axes[1])
 
@@ -392,6 +396,9 @@ def main() -> None:
 
     headlines = headline_metrics(prs, reviews)
     weekly = weekly_metrics(prs)
+    weekly = weekly[
+        weekly["week_start"] < pd.Timestamp("2026-07-06")
+    ].copy()
     by_size = segment_metrics(prs, "size_bucket", SIZE_ORDER)
     by_areas = segment_metrics(
         prs, "ownership_areas_touched", sorted(prs["ownership_areas_touched"].dropna().unique())

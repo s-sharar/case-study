@@ -1,5 +1,5 @@
-ownership_areas_touched,pr_count,average_review_wait_hours,median_review_wait_hours,waiting_over_24h_pct,average_ready_to_merge_hours,rollback_rate_pct
-1,984,14.352,13.733,6.606,25.937,0.638
-2,406,18.381,17.75,20.936,36.615,1.519
-3,142,23.512,22.792,42.958,50.635,5.147
-4,39,27.934,27.017,71.795,67.341,5.556
+ownership_areas_touched,pr_count,average_review_wait_hours,median_review_wait_hours,waiting_over_24h_pct,average_ready_to_merge_hours,rollback_rate_pct,merged_pr_count
+1,984,14.352,13.733,6.606,25.937,0.638,940
+2,406,18.381,17.75,20.936,36.615,1.519,395
+3,142,23.512,22.792,42.958,50.635,5.147,136
+4,39,27.934,27.017,71.795,67.341,5.556,36
